@@ -1,0 +1,4 @@
+# This repository intentionally contains only the downloadable study page.
+*
+!.gitignore
+!index.html
