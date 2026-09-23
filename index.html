@@ -143,6 +143,7 @@
 <script>
 const DAILY_PROBLEMS = [
   // ↓ 新しい問題はこの行のすぐ下に追加してください（先頭が「今日の問題」）
+  { date:"2026-09-24", subject:"英語", title:"1年2学期中間テスト／Unit 4〜5＋1学期復習", meta:"教科書p43〜70・ベンジャミンノートp46〜69・ワークp36〜59／新作82問・約2時間", icon:"🇬🇧", tab:"english-chukan2" },
   { date:"2026-09-23", subject:"理科", title:"1年2学期中間テスト／学習前〜第3章", meta:"教科書p80〜107・理科の学習p29〜41、46／新作120問", icon:"🧪", tab:"science-chukan2" },
   { date:"2026-09-20", subject:"数学", title:"1年2学期中間テスト2／パート2・3", meta:"文字の式・方程式・実力アップ問題", icon:"🧮", tab:"math-chukan2" },
   { date:"2026-08-30", subject:"英語", title:"夏トレ課題テスト 範囲横断・応用問題", meta:"英語・応用30問", icon:"🇬🇧", tab:"english-natsutore-advanced" },
@@ -170,11 +171,12 @@ const DAILY_PROBLEMS = [
 
 <header>
   <div class="title">📚 中1学習 ホーム</div>
-  <div class="sub">1年2学期中間テスト対策（数学・理科）・問題演習・マニュアル</div>
+  <div class="sub">1年2学期中間テスト対策（数学・理科・英語）・問題演習・マニュアル</div>
 </header>
 
 <nav class="tabs">
   <button class="tab-btn active" data-tab="home">🏠 ホーム</button>
+  <button class="tab-btn" data-tab="english-chukan2">🇬🇧 2学期中間:英語</button>
   <button class="tab-btn" data-tab="math-chukan2">🧮 2学期中間:数学</button>
   <button class="tab-btn" data-tab="science-chukan2">🧪 2学期中間:理科</button>
   <button class="tab-btn" data-tab="hotai-kimatsu">🩺 期末:保健体育</button>
@@ -204,6 +206,7 @@ const DAILY_PROBLEMS = [
 
 <h1>1年2学期 中間テスト</h1>
 <div class="midterm-links">
+  <button class="today" style="grid-column:1/-1" onclick="showTab('english-chukan2')"><span class="today-label">10月1日・英語</span><span class="today-title">🇬🇧 Unit 4〜5＋1学期復習</span><span class="today-meta">教科書p43〜70／ベンジャミンノートp46〜69／ワークp36〜59／新作82問・約2時間</span><span class="today-cta">英語を開く →</span></button>
   <button class="today" onclick="showTab('math-chukan2')"><span class="today-label">数学</span><span class="today-title">🧮 文字の式・方程式</span><span class="today-meta">先日作成した数学の演習</span><span class="today-cta">数学を開く →</span></button>
   <button class="today" onclick="showTab('science-chukan2')"><span class="today-label">10月1日・理科</span><span class="today-title">🧪 物質・気体・水溶液</span><span class="today-meta">教科書p80〜107／理科の学習p29〜41・46</span><span class="today-cta">理科を開く →</span></button>
 </div>
@@ -8260,6 +8263,31 @@ const DAILY_PROBLEMS = [
 <div id="midterm-count" class="meta-bar"></div><div id="midterm-bank"></div>
 </section>
 
+<section id="tab-english-chukan2" class="tab-pane">
+<button class="home-btn" onclick="showTab('home')">← ホームに戻る</button>
+<div class="controls-bar"><span>🇬🇧 1年2学期 中間テスト ／ 英語</span><button id="toggle-all" onclick="toggleAll()">表示中の答えをすべて見る</button></div>
+<h1 style="margin-top:0;">英語：Unit 4〜5＋1学期の復習</h1>
+<div class="meta-bar">範囲：教科書 p43〜70 ／ ベンジャミンノート p46〜69 ／ ワーク p36〜59 ／ 1学期内容 約1割</div>
+<div class="points"><b>約2時間の進め方</b><ul>
+<li>第1ラウンド15問（20分）→ 第2ラウンド39問（45分）→ 第3ラウンド20問（40分）→ 1学期復習8問（15分）。合計82問です。20〜30分ごとに短い休憩を取っても大丈夫。</li>
+<li>最初の15問の答えを確認すると、残りの問題が開きます。先に紙に書き、答えを見たら「なぜその語順・形か」を1回声に出しましょう。</li>
+<li>大文字・小文字、語順、ピリオド・疑問符・アポストロフィーも採点対象として確認します。英作文は示した模範解答と同じ意味なら、別の自然な表現も正解です。</li>
+<li>教科書・ワークの本文や設問は転載していません。写真で確認できた文法・語彙に合わせた新作問題です。1学期復習は範囲表の「1割程度」に合わせ、82問中8問にしました。</li>
+</ul></div>
+<table><thead><tr><th>区分</th><th>練習すること</th><th>主な対応ページ</th></tr></thead><tbody>
+<tr><td>Unit 4</td><td>複数形、How many、時刻・What time、好きな教科やスポーツ、命令文、数えられない名詞</td><td>教科書p43〜53／ワークp36〜43</td></tr>
+<tr><td>Stage・夏のページ</td><td>自己紹介、短い日記の読解、過去を表す語句</td><td>教科書p54〜60／ベンジャミンノートp54〜59</td></tr>
+<tr><td>Unit 5</td><td>he/sheの動詞に-s、does / doesn't、三人称の質問・否定、紹介文の読解</td><td>教科書p61〜70／ワークp48〜59</td></tr>
+<tr><td>1学期の復習</td><td>be動詞、一般動詞、can、疑問詞、アルファベットと文の書き方</td><td>範囲表「約1割」</td></tr>
+</tbody></table>
+<p class="science-progress" id="english-progress">第1ラウンド：0／15問の答えを確認</p>
+<div id="english-round1"></div>
+<div id="english-round2" hidden></div>
+<div id="english-round3" hidden></div>
+<div id="english-round4" hidden></div>
+<div class="help"><b>終わったら：</b>間違えた問題の答えを隠してもう一度書く。迷った問題は、教科書やワークの対応ページで1か所だけ確認しよう。</div>
+</section>
+
 <section id="tab-science-chukan2" class="tab-pane">
 <button class="home-btn" onclick="showTab('home')">← ホームに戻る</button>
 <div class="controls-bar"><span>🧪 1年2学期 中間テスト ／ 理科</span><button id="science-all" onclick="scienceToggleAll()">表示中の答えをすべて見る</button></div>
@@ -8380,6 +8408,7 @@ function reveal(id) {
 function toggleAll() {
   const activeTab = document.querySelector('.tab-pane.active');
   if (!activeTab) return;
+  if (activeTab.id === 'tab-english-chukan2') { englishToggleAll(); return; }
   const reveals = activeTab.querySelectorAll('.reveal');
   if (reveals.length === 0) return;
   const btn = activeTab.querySelector('.controls-bar button');
@@ -8463,6 +8492,139 @@ function renderMidtermBank() {
   let now=''; box.innerHTML=q.map((z,i)=>{const h=z.part!==now?(now=z.part,`<h2>${z.part}</h2>`):'';return `${h}<div class="q" id="midterm-q-${i}"><div class="q-header"><span class="q-num">Q${i+1}</span><span class="badge ${z.part==='パート3'?'b-hard':'b-mid'}">${z.unit}</span></div><div class="q-text">${z.text}</div><input class="ans-input" placeholder="紙に途中式を書こう"><div class="actions"><button class="btn" onclick="reveal('midterm-q-${i}')">答え・解説を見る</button></div><div class="reveal"><b style="color:#b3261e">答え：</b><span style="color:#b3261e;font-weight:800">${z.answer}</span><br><b>考え方：</b>${z.tip}</div></div>`}).join('');
 }
 function midtermToggleAll(){const t=document.getElementById('tab-math-chukan2'),rs=t.querySelectorAll('.reveal'),show=!Array.from(rs).every(x=>x.classList.contains('show'));rs.forEach(x=>x.classList.toggle('show',show));document.getElementById('midterm-all').textContent=show?'全部の答えを隠す':'全部の答えを表示';}
+// 2026-09-24 English midterm: 82 original questions (15 + 39 + 20 + 8).
+// Each entry: [round, topic, prompt, model answer, short explanation, needsLongAnswer].
+const ENGLISH_QUESTIONS = [
+['基本','複数形','cat を「2匹のネコ」の形にして、two に続けて書こう。','two cats','ふつうの名詞は複数なら -s をつける。'],
+['基本','複数形','box を「3個の箱」の形にして書こう。','three boxes','-x で終わる語は -es をつける。'],
+['基本','冠詞','「1個のオレンジ」を英語で書こう。','an orange','母音の音で始まる語の前は an。'],
+['基本','数','「私は犬を2匹飼っています。」を英語で書こう。','I have two dogs.','two の後の dog は複数形。'],
+['基本','How many','「あなたはペンを何本持っていますか。」を英語で書こう。','How many pens do you have?','How many＋複数名詞＋do you ...? の順。'],
+['基本','時刻','「6時です。」を英語で書こう。','It is six o’clock.','時刻を言うときの主語は It。'],
+['基本','時刻','「今、何時ですか。」を英語で書こう。','What time is it now?','What time で時刻をたずねる。'],
+['基本','命令文','「ここに来て。」を英語で書こう。','Come here.','命令文は動詞の原形から始める。'],
+['基本','禁止','「走らないで。」を英語で書こう。','Don’t run.','Don’t＋動詞の原形。'],
+['基本','三人称単数','He ( play / plays ) the piano. 正しい語を選び、全文を書こう。','He plays the piano.','He が主語の現在の習慣では動詞に -s。'],
+['基本','否定文','She ( don’t / doesn’t ) like math. 正しい語を選び、全文を書こう。','She doesn’t like math.','She には doesn’t。後の like は原形。'],
+['基本','疑問文','「ケンはサッカーをしますか。」を英語で書こう。','Does Ken play soccer?','三人称単数の疑問文は Does＋主語＋動詞の原形。'],
+['基本','答え方','Does Aya play tennis? に「はい」で答えよう。','Yes, she does.','Aya を受ける代名詞は she。'],
+['基本','大文字','「ニュージーランド」を正しい大文字で英語にしよう。','New Zealand','国名は各語の先頭を大文字にする。'],
+['基本','文の形','what sports do you play を、英語の文として正しく書き直そう。','What sports do you play?','文頭は大文字、質問の終わりは ?。'],
+
+['単元別','Unit 4・複数形','「4匹の子犬」を英語で書こう。','four puppies','puppy は y を i に変えて -es。'],
+['単元別','Unit 4・複数形','「3匹の羊」を英語で書こう。','three sheep','sheep は単数も複数も同じ形。'],
+['単元別','Unit 4・複数形','「5人の子ども」を英語で書こう。','five children','child の複数形は children。'],
+['単元別','Unit 4・数','I have ( a / an ) apple and two bananas. 正しい語を選び、全文を書こう。','I have an apple and two bananas.','apple の前は an。two bananas は複数。'],
+['単元別','Unit 4・数','「あなたは何冊の本を持っていますか。」を英語で書こう。','How many books do you have?','books を複数形にする。'],
+['単元別','Unit 4・数','How many birds do you have? に「3羽です」と英文で答えよう。','I have three birds.','数の後の名詞は複数形。'],
+['単元別','Unit 4・数','「私にはたくさんの友達がいます。」を英語で書こう。','I have a lot of friends.','a lot of の後は数えられる名詞なら複数形。'],
+['単元別','Unit 4・数','「これは私の犬のうちの1匹です。」を one of を使って書こう。','This is one of my dogs.','one of の後は複数形 dogs。'],
+['単元別','Unit 4・時刻','「7時30分です。」を英語で書こう。','It is seven thirty.','seven thirty は7時30分。'],
+['単元別','Unit 4・時刻','「あなたは何時に起きますか。」を英語で書こう。','What time do you get up?','時刻をたずねる語を文頭に置く。'],
+['単元別','Unit 4・時刻','「私は午前6時に起きます。」を英語で書こう。','I get up at six a.m.','時刻の前は at。a.m. は午前。'],
+['単元別','Unit 4・時刻','「今は午後3時です。」を英語で書こう。','It is three in the afternoon now.','in the afternoon は午後に。'],
+['単元別','Unit 4・質問','「あなたは何の教科が好きですか。」を英語で書こう。','What subject do you like?','What subject で教科をたずねる。'],
+['単元別','Unit 4・質問','「私は理科が好きです。」を英語で書こう。','I like science.','教科名 science はふつう小文字。'],
+['単元別','Unit 4・質問','「あなたは何のスポーツをしますか。」を英語で書こう。','What sports do you play?','sports は複数形。'],
+['単元別','Unit 4・質問','「私はサッカーとテニスをします。」を英語で書こう。','I play soccer and tennis.','I が主語なので play に -s は不要。'],
+['単元別','Unit 4・命令文','「前に来てください。」を英語で書こう。','Come to the front, please.','動詞 Come から始め、ていねいさは please。'],
+['単元別','Unit 4・命令文','「心配しないで。」を英語で書こう。','Don’t worry.','Don’t＋動詞の原形。'],
+['単元別','Unit 4・命令文','「気をつけて。」を英語で書こう。','Be careful.','be動詞を使う命令文も Be から始める。'],
+['単元別','Unit 4・命令文','「この写真を見て。」を英語で書こう。','Look at this picture.','look at で「～を見る」。'],
+['単元別','Unit 4・名詞','water と apple のうち、数えられない名詞はどちら？','water','water は a water / two waters と数えない。'],
+['単元別','Unit 4・名詞','「水を1杯」を英語で書こう。','a glass of water','数えられない water は容器で数える。'],
+['単元別','夏のページ','「私は昨日、祖母の家に行きました。」を英語で書こう。（went を使う）','I went to my grandmother’s house yesterday.','went は go の過去形。yesterday が過去の手がかり。'],
+['単元別','夏のページ','「私はスイカを食べました。」を英語で書こう。（ate を使う）','I ate watermelon.','ate は eat の過去形。'],
+['単元別','夏のページ','「私たちは楽しい時間を過ごしました。」を英語で書こう。（had を使う）','We had a good time.','had は have の過去形。'],
+['単元別','夏のページ','I ( enjoy / enjoyed ) the festival last night. 正しい語を選び、全文を書こう。','I enjoyed the festival last night.','last night は過去なので enjoyed。'],
+['単元別','Unit 5・三単現','She ( live / lives ) in Osaka. 正しい語を選び、全文を書こう。','She lives in Osaka.','She が主語なら live に -s。'],
+['単元別','Unit 5・三単現','My brother ( study / studies ) English. 正しい語を選び、全文を書こう。','My brother studies English.','子音字＋y は y を i にして -es。'],
+['単元別','Unit 5・三単現','Ken ( watch / watches ) TV on Sundays. 正しい語を選び、全文を書こう。','Ken watches TV on Sundays.','-ch で終わる watch は -es。'],
+['単元別','Unit 5・三単現','「彼は京都で働いています。」を英語で書こう。','He works in Kyoto.','He が主語なので works。'],
+['単元別','Unit 5・三単現','「アヤは犬を1匹飼っています。」を英語で書こう。','Aya has a dog.','have の三単現は has。'],
+['単元別','Unit 5・否定文','「彼女はテニスをしません。」を英語で書こう。','She does not play tennis.','does not の後は動詞の原形 play。doesn’t でも正解。'],
+['単元別','Unit 5・否定文','He does not ( likes / like ) cats. 正しい語を選び、全文を書こう。','He does not like cats.','does が三単現を表すので like は原形。'],
+['単元別','Unit 5・否定文','「私の父は日曜日に働きません。」を英語で書こう。','My father does not work on Sundays.','My father は三人称単数。does not＋原形。'],
+['単元別','Unit 5・疑問文','「ユウタは英語を話しますか。」を英語で書こう。','Does Yuta speak English?','Does＋主語＋動詞の原形。'],
+['単元別','Unit 5・疑問文','Does your sister play the guitar? に「いいえ」で答えよう。','No, she does not.','your sister を she で受ける。No, she doesn’t. でも正解。'],
+['単元別','Unit 5・疑問文','「マリアは何を読みますか。」を英語で書こう。','What does Maria read?','疑問詞 What の後に does＋主語＋原形。'],
+['単元別','Unit 5・疑問文','「あなたの兄はどこに住んでいますか。」を英語で書こう。','Where does your brother live?','Where does＋主語＋動詞の原形。'],
+['単元別','Unit 5・代名詞','「彼のブログ」を英語で書こう。','his blog','彼の は his。彼女の は her。'],
+
+['実戦','読解','Mina has two cats and one dog. She likes animals. ペットは全部で何匹？英語で答えよう。','She has three pets.','two cats＋one dog＝three pets。'],
+['実戦','読解','Mina has two cats and one dog. She likes animals. Does Mina like animals? 英語で答えよう。','Yes, she does.','Mina は she。like animals と書かれている。'],
+['実戦','読解','Tom lives in Kobe. He plays basketball after school. Where does Tom live? 英語で答えよう。','He lives in Kobe.','Tom は he。lives の -s を忘れない。'],
+['実戦','読解','Tom lives in Kobe. He plays basketball after school. What sport does Tom play? 英語で答えよう。','He plays basketball.','質問は does でも、答えは He plays。'],
+['実戦','会話','A: How many notebooks do you have?  B: （4冊持っています。）Bのセリフを書こう。','I have four notebooks.','four の後は複数形。'],
+['実戦','会話','A: What time do you practice?  B: （午後5時に練習します。）Bのセリフを書こう。','I practice at five p.m.','時刻の前は at。午後は p.m.。'],
+['実戦','会話','A: Does your friend like music?  B: （はい、好きです。）Bのセリフを書こう。','Yes, she does.','friend を女の子として受ける例。男の子なら Yes, he does. も正解。'],
+['実戦','会話','A: I am nervous.  B: （心配しないで。）Bのセリフを書こう。','Don’t worry.','禁止・助言の形は Don’t＋動詞の原形。'],
+['実戦','まちがい直し','He play soccer every day. まちがいを1か所直して全文を書こう。','He plays soccer every day.','He が主語なので play→plays。'],
+['実戦','まちがい直し','Does she likes dogs? まちがいを1か所直して全文を書こう。','Does she like dogs?','does の後は原形 like。'],
+['実戦','まちがい直し','My sister don’t read books. まちがいを1か所直して全文を書こう。','My sister doesn’t read books.','My sister は三人称単数。'],
+['実戦','まちがい直し','How many dog do you have? まちがいを1か所直して全文を書こう。','How many dogs do you have?','How many の後は複数名詞。'],
+['実戦','まちがい直し','Dont run in the classroom. まちがいを1か所直して全文を書こう。','Don’t run in the classroom.','Don’t のアポストロフィーを忘れない。'],
+['実戦','まちがい直し','what time does Ken get up. まちがいを2か所直して全文を書こう。','What time does Ken get up?','文頭を大文字にし、疑問文の末尾は ?。'],
+['実戦','英作文','【英作文】「私は本をたくさん持っています。姉は毎日本を読みます。」を2文の英語で書こう。','I have a lot of books. My sister reads books every day.','I have／My sister reads の主語と動詞の形を分ける。',true],
+['実戦','英作文','【英作文】「あなたの兄は何時に学校へ行きますか。彼は8時に行きます。」を2文で書こう。','What time does your brother go to school? He goes to school at eight.','質問は does＋原形 go、答えは He goes。',true],
+['実戦','英作文','【英作文】友達を紹介しよう。「彼女はユイです。彼女は大阪に住んでいます。彼女は音楽が好きです。」を3文で書こう。','This is Yui. She lives in Osaka. She likes music.','紹介文では She＋動詞の三単現をそろえる。',true],
+['実戦','英作文','【英作文】学校で使う「前に来てください。ここに立ってください。話さないでください。」を3文で書こう。','Come to the front, please. Stand here, please. Don’t speak, please.','命令文は動詞から、禁止は Don’t から始める。',true],
+['実戦','英作文','【英作文】「私は昨日、公園に行きました。そこで楽しい時間を過ごしました。」を2文で書こう。（went / had を使う）','I went to the park yesterday. I had a good time there.','過去の出来事なので went と had。',true],
+['実戦','英作文','【英作文】身近な人について3文書こう。住む場所、好きなこと、しないことを1文ずつ入れる。（he/she を使う）','例：My brother lives in Nagoya. He likes soccer. He does not play tennis.','名前や内容は自由。三単現の -s と does not＋原形を確認する。',true],
+
+['1学期','be動詞','I ( am / is / are ) a junior high school student. 正しい語を選び、全文を書こう。','I am a junior high school student.','主語 I に合う be動詞は am。'],
+['1学期','be動詞','「彼女は私の友達です。」を英語で書こう。','She is my friend.','She には is。'],
+['1学期','一般動詞','Do you like art? に「はい」で答えよう。','Yes, I do.','Do you ...? の返答は I do。'],
+['1学期','一般動詞','「私は牛乳が好きではありません。」を英語で書こう。','I don’t like milk.','I には don’t。後の like は原形。'],
+['1学期','can','「私は英語を話せます。」を英語で書こう。','I can speak English.','can の後は動詞の原形。'],
+['1学期','疑問詞','「あなたの先生はだれですか。」を英語で書こう。','Who is your teacher?','人をたずねる疑問詞は Who。'],
+['1学期','語順','並べかえて文を書こう：from / are / you / where / ?','Where are you from?','疑問詞 Where を先頭にする。'],
+['1学期','アルファベット','英語のアルファベットで G の次の大文字を1文字書こう。','H','G の次は H。大文字で書く。']
+];
+
+const englishSeen = new Set();
+function englishEscape(value){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function renderEnglishBank(){
+  const ids=['english-round1','english-round2','english-round3','english-round4'];
+  const nodes=ids.map(id=>document.getElementById(id));
+  if(nodes.some(n=>!n)||nodes[0].dataset.ready)return;
+  const sizes=[15,39,20,8], titles=['第1ラウンド：基本15問（20分）','第2ラウンド：Unit 4〜5・夏のページ39問（45分）','第3ラウンド：読解・会話・英作文20問（40分）','第4ラウンド：1学期の復習8問（15分）'];
+  let offset=0;
+  nodes.forEach((node,round)=>{
+    let last='';
+    const cards=ENGLISH_QUESTIONS.slice(offset,offset+sizes[round]).map((q,n)=>{
+      const i=offset+n;
+      const heading=q[1]!==last?(last=q[1],`<div class="science-unit">${englishEscape(q[1])}</div>`):'';
+      const input=q[5]?`<textarea class="ans-input" aria-label="Q${i+1}の解答" placeholder="紙かここに英文を書こう"></textarea>`:`<input class="ans-input" aria-label="Q${i+1}の解答" placeholder="先に答えを書こう">`;
+      return `${heading}<div class="q" id="english-q-${i}"><div class="q-header"><span class="q-num">Q${i+1}</span><span class="badge ${round===0?'b-easy':round===2?'b-hard':'b-med'}">${englishEscape(q[1])}</span></div><div class="q-text">${englishEscape(q[2])}</div>${input}<div class="actions"><button class="btn" onclick="englishReveal(${i})">答え・解説を見る</button></div><div class="reveal"><b style="color:#b3261e">答え：</b><b style="color:#b3261e">${englishEscape(q[3])}</b><br><b>ポイント：</b>${englishEscape(q[4])}</div></div>`;
+    }).join('');
+    node.innerHTML=`<h2>${titles[round]}</h2>${cards}`;
+    offset+=sizes[round];
+  });
+  nodes[0].dataset.ready='1';
+}
+function englishUpdateProgress(){
+  const count=englishSeen.size, progress=document.getElementById('english-progress');
+  if(progress)progress.textContent=`第1ラウンド：${count}／15問の答えを確認${count===15?' ／ 残り67問が開きました！':''}`;
+  if(count===15){
+    const second=document.getElementById('english-round2');
+    if(second.hidden){for(const id of ['english-round2','english-round3','english-round4'])document.getElementById(id).hidden=false;second.scrollIntoView({behavior:'smooth',block:'start'});}
+  }
+}
+function englishReveal(index){
+  const card=document.getElementById('english-q-'+index);if(!card)return;
+  const answer=card.querySelector('.reveal');answer.classList.toggle('show');
+  if(index<15&&answer.classList.contains('show')){englishSeen.add(index);englishUpdateProgress();}
+}
+function englishToggleAll(){
+  const tab=document.getElementById('tab-english-chukan2'),button=tab.querySelector('#toggle-all');
+  const visible=Array.from(tab.querySelectorAll('.q .reveal')).filter(el=>!el.closest('[hidden]'));
+  const show=!visible.every(el=>el.classList.contains('show'));
+  if(show){for(let i=0;i<15;i++)englishSeen.add(i);englishUpdateProgress();}
+  Array.from(tab.querySelectorAll('.q .reveal')).filter(el=>!el.closest('[hidden]')).forEach(el=>el.classList.toggle('show',show));
+  button.textContent=show?'表示中の答えをすべて隠す':'表示中の答えをすべて見る';
+}
+
 const SCIENCE_QUESTIONS = [];
 const scienceAdd = (part, unit, question, answer, why, source) => SCIENCE_QUESTIONS.push({part,unit,question,answer,why,source});
 // 第1ラウンド：全範囲の土台を15問で確認する。問題文と数値は新作。
@@ -8609,6 +8771,7 @@ function scienceToggleAll(){
 document.addEventListener('DOMContentLoaded', () => {
   renderDailyProblems();
   renderMidtermBank();
+  renderEnglishBank();
   renderScienceBank();
   const requestedTab = decodeURIComponent(location.hash.slice(1));
   if (requestedTab && document.getElementById('tab-' + requestedTab)) showTab(requestedTab);
