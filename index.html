@@ -90,6 +90,15 @@
   .home-btn { display: inline-block; background: #c19534; color: #1a1a1a; padding: 8px 18px; text-decoration: none; border-radius: 3px; font-weight: 700; font-size: 13px; letter-spacing: 1px; margin-bottom: 16px; cursor: pointer; border: none; font-family: inherit; }
   footer { text-align: center; margin-top: 40px; font-size: 11px; color: #888; }
   .test-banner { background: linear-gradient(135deg, #c62828, #ef6c00); color: #fff; padding: 10px 18px; border-radius: 4px; margin-bottom: 14px; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+  .midterm-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:0 0 22px; }
+  .midterm-links button { text-align:left; font:inherit; cursor:pointer; }
+  .midterm-links .today-label,.midterm-links .today-title,.midterm-links .today-meta,.midterm-links .today-cta { display:block; }
+  .midterm-links .today-title { margin:7px 0; font-size:18px; line-height:1.4; }
+  .midterm-links .today-meta { line-height:1.55; }
+  .science-unit { margin:26px 0 10px; padding:10px 14px; background:#1a1a1a; color:#f5e8c0; border-radius:4px; font-weight:700; }
+  .science-source { font-size:12px; color:#6b5d3c; margin-top:5px; }
+  .science-progress { background:#fffaf0; border:1px solid #e6d9a8; padding:12px 16px; margin:14px 0; border-radius:4px; }
+  @media(max-width:650px){.midterm-links{grid-template-columns:1fr}}
 
 /* ===== 期末・夢ホームUI（2026-06-10追加） ===== */
 .dream-hero{background:linear-gradient(135deg,#1a1a1a,#3a2f15);color:#f5e8c0;border-radius:8px;padding:22px 24px 18px;margin-bottom:18px;border:1px solid #c19534}
@@ -134,6 +143,7 @@
 <script>
 const DAILY_PROBLEMS = [
   // ↓ 新しい問題はこの行のすぐ下に追加してください（先頭が「今日の問題」）
+  { date:"2026-09-23", subject:"理科", title:"1年2学期中間テスト／学習前〜第3章", meta:"教科書p80〜107・理科の学習p29〜41、46／新作120問", icon:"🧪", tab:"science-chukan2" },
   { date:"2026-09-20", subject:"数学", title:"1年2学期中間テスト2／パート2・3", meta:"文字の式・方程式・実力アップ問題", icon:"🧮", tab:"math-chukan2" },
   { date:"2026-08-30", subject:"英語", title:"夏トレ課題テスト 範囲横断・応用問題", meta:"英語・応用30問", icon:"🇬🇧", tab:"english-natsutore-advanced" },
   { date:"2026-06-12", subject:"技術", title:"【期末】材料と加工・丈夫な構造・製図（ハンドノート再現）", meta:"期末テスト範囲（6/23火）・50問・記述中心", icon:"🔧", tab:"gijutsu-kimatsu" },
@@ -160,11 +170,13 @@ const DAILY_PROBLEMS = [
 
 <header>
   <div class="title">📚 中1学習 ホーム</div>
-  <div class="sub">期末テスト対策（6/19・6/22・6/23）・問題演習・Claude.aiヘルプ・マニュアル</div>
+  <div class="sub">1年2学期中間テスト対策（数学・理科）・問題演習・マニュアル</div>
 </header>
 
 <nav class="tabs">
   <button class="tab-btn active" data-tab="home">🏠 ホーム</button>
+  <button class="tab-btn" data-tab="math-chukan2">🧮 2学期中間:数学</button>
+  <button class="tab-btn" data-tab="science-chukan2">🧪 2学期中間:理科</button>
   <button class="tab-btn" data-tab="hotai-kimatsu">🩺 期末:保健体育</button>
   <button class="tab-btn" data-tab="kateika-kimatsu">🍚 期末:家庭科</button>
   <button class="tab-btn" data-tab="gijutsu-kimatsu">🔧 期末:技術</button>
@@ -189,6 +201,12 @@ const DAILY_PROBLEMS = [
 </nav>
 
 <section id="tab-home" class="tab-pane active">
+
+<h1>1年2学期 中間テスト</h1>
+<div class="midterm-links">
+  <button class="today" onclick="showTab('math-chukan2')"><span class="today-label">数学</span><span class="today-title">🧮 文字の式・方程式</span><span class="today-meta">先日作成した数学の演習</span><span class="today-cta">数学を開く →</span></button>
+  <button class="today" onclick="showTab('science-chukan2')"><span class="today-label">10月1日・理科</span><span class="today-title">🧪 物質・気体・水溶液</span><span class="today-meta">教科書p80〜107／理科の学習p29〜41・46</span><span class="today-cta">理科を開く →</span></button>
+</div>
 
 <div class="dream-hero">
   <div class="dh-tag">ぼ く の 夢 へ の 作 戦 ボ ー ド</div>
@@ -8242,6 +8260,32 @@ const DAILY_PROBLEMS = [
 <div id="midterm-count" class="meta-bar"></div><div id="midterm-bank"></div>
 </section>
 
+<section id="tab-science-chukan2" class="tab-pane">
+<button class="home-btn" onclick="showTab('home')">← ホームに戻る</button>
+<div class="controls-bar"><span>🧪 1年2学期 中間テスト ／ 理科</span><button id="science-all" onclick="scienceToggleAll()">表示中の答えをすべて見る</button></div>
+<h1 style="margin-top:0;">理科：学習前〜第3章</h1>
+<div class="meta-bar">試験範囲：教科書 p80〜107 ／「理科の学習」p29〜41・46 ／ 10月1日（木）2時間目</div>
+<div class="points"><b>使い方</b><ul>
+<li>最初の15問で基本を確認。各問の答えを見終わると、章別45問と実戦60問が開きます。合計120問です。</li>
+<li><b>学習時間の目安は約60分：</b>基本15問を10分、章別45問を20分、実戦60問を30分。途中で20分ごとに短い休憩を入れても大丈夫です。</li>
+<li>計算は紙に式と単位を書いてから答えを開いてください。記述は「結果」だけでなく「理由」も言えるか確認します。</li>
+<li>教科書・ワークの問題文や写真を転載せず、範囲に合わせて新しく作った問題です。</li>
+<li>ワークp46の関連事項は最後に「ワーク指定の補強」として置きました。教科書p108以降の内容とは区別して復習できます。</li>
+</ul></div>
+<table><thead><tr><th>区分</th><th>確かめる内容</th><th>資料</th></tr></thead><tbody>
+<tr><td>学習前</td><td>観察・比較・実験の条件、結果と考察</td><td>教科書サイト「学習前」</td></tr>
+<tr><td>第1章</td><td>金属と非金属、質量・体積・密度、白い粉末、有機物と無機物</td><td>教科書p80〜90／ワークp29〜35</td></tr>
+<tr><td>第2章</td><td>酸素・二酸化炭素・水素・アンモニア、気体の判別と集め方</td><td>教科書p91〜100／ワークp36〜38</td></tr>
+<tr><td>第3章</td><td>水にとける、ろ過、水溶液、質量パーセント濃度、純物質と混合物</td><td>教科書p101〜107／ワークp39〜41</td></tr>
+<tr><td>ワーク指定の補強</td><td>飽和水溶液、溶解度、結晶・再結晶の基本</td><td>ワークp46</td></tr>
+</tbody></table>
+<p class="science-progress" id="science-progress">第1ラウンド：0／15問の答えを確認</p>
+<div id="science-round1"></div>
+<div id="science-round2" hidden></div>
+<div id="science-round3" hidden></div>
+<div class="help"><b>仕上げの目安：</b>答えを隠した状態で説明できるかを確認。特に「密度＝質量÷体積」「気体の集め方を選ぶ理由」「濃度の分母＝水溶液全体」はもう一度解き直してください。</div>
+</section>
+
 <section id="tab-prompts" class="tab-pane">
 <button class="home-btn" onclick="showTab('home')">← ホームに戻る</button>
 <h1 style="margin-top:0;">💬 Claude.ai に貼り付ける共通プロンプト集</h1>
@@ -8419,9 +8463,155 @@ function renderMidtermBank() {
   let now=''; box.innerHTML=q.map((z,i)=>{const h=z.part!==now?(now=z.part,`<h2>${z.part}</h2>`):'';return `${h}<div class="q" id="midterm-q-${i}"><div class="q-header"><span class="q-num">Q${i+1}</span><span class="badge ${z.part==='パート3'?'b-hard':'b-mid'}">${z.unit}</span></div><div class="q-text">${z.text}</div><input class="ans-input" placeholder="紙に途中式を書こう"><div class="actions"><button class="btn" onclick="reveal('midterm-q-${i}')">答え・解説を見る</button></div><div class="reveal"><b style="color:#b3261e">答え：</b><span style="color:#b3261e;font-weight:800">${z.answer}</span><br><b>考え方：</b>${z.tip}</div></div>`}).join('');
 }
 function midtermToggleAll(){const t=document.getElementById('tab-math-chukan2'),rs=t.querySelectorAll('.reveal'),show=!Array.from(rs).every(x=>x.classList.contains('show'));rs.forEach(x=>x.classList.toggle('show',show));document.getElementById('midterm-all').textContent=show?'全部の答えを隠す':'全部の答えを表示';}
+const SCIENCE_QUESTIONS = [];
+const scienceAdd = (part, unit, question, answer, why, source) => SCIENCE_QUESTIONS.push({part,unit,question,answer,why,source});
+// 第1ラウンド：全範囲の土台を15問で確認する。問題文と数値は新作。
+scienceAdd('基礎15問','学習前','2種類の粉を水に入れたときの違いを調べたい。粉の種類以外で、同じにしておく条件を1つ答えなさい。','水の量（または温度・粉の量・混ぜる時間）','変える条件を1つにすると、結果の違いの原因を考えやすい。','教科書サイト「学習前」');
+scienceAdd('基礎15問','学習前','実験後に「水が白くにごった」と記録した。これは結果と考察のどちらか。','結果','見たり測ったりした事実が結果。そこから考えた理由が考察。','教科書サイト「学習前」');
+scienceAdd('基礎15問','第1章','金属に共通しやすい性質を2つ答えなさい。','電気を通す・みがくと光る（熱を伝えやすい、たたくと広がる、引っ張るとのびる、も可）','色や重さだけで金属を決めない。複数の性質を使って区別する。','ワークp34〜35');
+scienceAdd('基礎15問','第1章','密度を求める式を、質量と体積を使って書きなさい。','密度＝質量÷体積','単位は g/cm³。質量と体積を逆にしない。','教科書p80〜83／ワークp29〜30');
+scienceAdd('基礎15問','第1章','質量54g、体積20cm³の物体の密度は何g/cm³か。','2.7g/cm³','54÷20＝2.7。単位も書く。','教科書p81／ワークp29〜32');
+scienceAdd('基礎15問','第1章','メスシリンダーの水面が50cm³から68cm³になった。入れた物体の体積は何cm³か。','18cm³','入れた後の目盛り68から、入れる前の50を引く。','教科書p81〜82／ワークp30');
+scienceAdd('基礎15問','第1章','正体のわからない白い粉を見分けるとき、味見をしてよいか。','してはいけない','安全のため、手ざわり・水へのとけ方・加熱したときの変化などを調べる。','教科書p84〜88／ワークp33');
+scienceAdd('基礎15問','第1章','炭素をふくむ物質を燃やしたとき、二酸化炭素などができる。このような物質を何というか。','有機物','砂糖やデンプンは有機物。食塩や鉄は無機物。','教科書p89／ワークp35');
+scienceAdd('基礎15問','第2章','石灰水を白くにごらせる気体は何か。','二酸化炭素','二酸化炭素を見分ける代表的な方法。','教科書p93〜95／ワークp36');
+scienceAdd('基礎15問','第2章','火のついた線香を入れると激しく燃える気体は何か。','酸素','酸素は物を燃やすはたらきがある。','教科書p93〜95／ワークp36');
+scienceAdd('基礎15問','第2章','火を近づけると音を出して燃え、水ができる気体は何か。','水素','水素そのものが燃える。酸素の「物を燃やすはたらき」と区別する。','教科書p95／ワークp37〜38');
+scienceAdd('基礎15問','第2章','水でぬらした赤色リトマス紙を青色に変える気体は何か。','アンモニア','アンモニアの水溶液はアルカリ性を示す。','教科書p96〜98／ワークp37');
+scienceAdd('基礎15問','第2章','水にとけにくい酸素を水の中で集める方法を何というか。','水上置換法','水にとけにくい気体を、水と置き換えて集める。','教科書p97／ワークp38');
+scienceAdd('基礎15問','第3章','食塩水では、食塩と水のどちらが溶質、どちらが溶媒か。','溶質＝食塩、溶媒＝水','溶質はとける物質、溶媒はとかす液体。','教科書p106／ワークp40');
+scienceAdd('基礎15問','第3章','砂糖15gを水85gにとかした。質量パーセント濃度は何％か。','15％','砂糖15g÷砂糖水全体100g×100。分母は水だけではない。','教科書p106〜107／ワークp40〜41');
+// 第2ラウンド：学習前と教科書・指定ワークの論点を章別に確認する。
+scienceAdd('学習前','条件と考察','AとBの金属を比べるため、同じ大きさの試料を用意した。同じ大きさにした理由は何か。','体積をそろえて、質量の違いを比べるため。','比べたい条件以外をそろえるのが、公平な比較の基本。','教科書サイト「学習前」');
+scienceAdd('学習前','予想と実験','「鉄の方がアルミニウムより密度が大きい」という考えは、実験前なら何と呼ぶか。','予想（仮説）','測定して確かめる前の説明は予想。','教科書サイト「学習前」');
+scienceAdd('学習前','安全な調べ方','正体不明の気体のにおいを調べるとき、鼻を試験管の口に近づけて直接かいでよいか。','よくない。手であおいで少しずつかぐ。','刺激の強い気体を直接吸い込まないため。','教科書p92／ワークp36');
+scienceAdd('第1章','金属の共通点','木・鉄・プラスチックを調べる。金属かどうかを調べるのに、電気を通すかを見るのはなぜか。','金属は電気を通しやすい性質があるから。','見た目だけより、物質の性質で判別できる。','ワークp34〜35');
+scienceAdd('第1章','金属と非金属','アルミニウムは金属、ガラスは非金属である。両方とも透明でない場合がある。このとき、見た目以外に調べる性質を1つ答えなさい。','電気を通すか（または、みがいたときの金属光沢）。','物質の種類は複数の性質を調べて判断する。','ワークp34〜35');
+scienceAdd('第1章','質量と密度','大きなアルミニウム片と小さなアルミニウム片では、質量は違う。密度はどうなるか。','同じになる。','同じ物質なら、質量と体積の比は同じ。','教科書p80〜83');
+scienceAdd('第1章','密度計算','体積6cm³で質量47.4gの金属の密度を求めなさい。','7.9g/cm³','47.4÷6＝7.9。','教科書p81／ワークp29〜32');
+scienceAdd('第1章','密度計算','密度2.7g/cm³、体積25cm³の物体の質量を求めなさい。','67.5g','質量＝密度×体積＝2.7×25。','ワークp32');
+scienceAdd('第1章','密度計算','質量78g、密度7.8g/cm³の物体の体積を求めなさい。','10cm³','体積＝質量÷密度＝78÷7.8。','ワークp32');
+scienceAdd('第1章','測定','メスシリンダーの水面は、真横からどの位置を読むか。','液面のいちばん低いところ。','目の高さを水面に合わせて読む。','教科書p82／ワークp30');
+scienceAdd('第1章','密度と浮き沈み','密度0.8g/cm³の物体を、密度1.0g/cm³の水に入れるとどうなるか。','浮く。','物体の密度が水より小さいため。','教科書p83／ワークp30');
+scienceAdd('第1章','密度と浮き沈み','水・油・氷の密度がそれぞれ1.0、0.9、0.92g/cm³なら、氷は油と水の境目でどのようになるか。','油には沈み、水には浮く。','0.9より大きく、1.0より小さいため。','教科書p83／ワークp30');
+scienceAdd('第1章','密度と単位','密度の単位 g/cm³ の「cm³」は何を表すか。','体積','1cm³あたりの質量が密度。','教科書p80〜81');
+scienceAdd('第1章','白い粉末','食塩とデンプンを水に入れて混ぜた。透明になったのはどちらと考えられるか。','食塩','デンプンは水にとけず、白くにごる。','教科書p84〜88／ワークp33');
+scienceAdd('第1章','白い粉末','白砂糖と食塩はどちらも水にとける。加熱したときの様子でどう見分けるか。','白砂糖はこげるが、食塩はこげにくい。','性質を一つずつ組み合わせて判別する。','教科書p85〜88／ワークp33');
+scienceAdd('第1章','白い粉末','グラニュー糖と白砂糖を、水へのとけ方だけで区別しにくいのはなぜか。','どちらも水にとけるから。','粒の形や大きさなど、別の性質も調べる。','教科書p88／ワークp33');
+scienceAdd('第1章','有機物','ろうを燃やすと、石灰水が白くにごり、冷たい容器には水滴がついた。できた物質を2つ答えなさい。','二酸化炭素と水','炭素をふくむ物質が燃えると、二酸化炭素ができる。','教科書p89／ワークp35');
+scienceAdd('第1章','無機物','鉄・砂糖・エタノールのうち、無機物はどれか。','鉄','砂糖とエタノールは有機物。','教科書p89／ワークp35');
+scienceAdd('第2章','二酸化炭素','石灰石にうすい塩酸を加えると発生する気体は何か。','二酸化炭素','石灰水を白くにごらせて確認する。','教科書p93〜95／ワークp36〜38');
+scienceAdd('第2章','二酸化炭素','二酸化炭素を水でぬらした青色リトマス紙で調べると、何色に変わるか。','赤色','二酸化炭素が水にとけた液は酸性を示す。','教科書p94〜95／ワークp36');
+scienceAdd('第2章','二酸化炭素','二酸化炭素は空気より密度が大きく、水に少しとける。空気と置き換えて集めるなら、どの方法か。','下方置換法','空気より重い気体を容器の下にためて集める。','教科書p95〜97／ワークp38');
+scienceAdd('第2章','酸素','二酸化マンガンにオキシドールを加えると発生する気体は何か。','酸素','酸素は水にとけにくいので、水上置換法で集められる。','教科書p93〜95／ワークp36〜38');
+scienceAdd('第2章','酸素','酸素を集めた試験管に火のついた線香を入れるとどうなるか。','激しく燃える。','酸素には物質を燃やすはたらきがある。','教科書p94〜95／ワークp36');
+scienceAdd('第2章','酸素','酸素と二酸化炭素を区別する実験を1つ挙げ、結果を説明しなさい。','石灰水を入れると、二酸化炭素だけ白くにごる。','気体固有の性質を使う。線香の燃え方でも区別できる。','教科書p93〜95／ワークp36');
+scienceAdd('第2章','水素','亜鉛にうすい塩酸を加えたときに発生する気体は何か。','水素','鉄などの金属でも発生させられる。','教科書p95／ワークp37〜38');
+scienceAdd('第2章','水素','水素は物質を燃やすはたらきがあるのか、それとも水素そのものが燃えるのか。','水素そのものが燃える。','酸素の性質と混同しない。','教科書p95／ワークp38');
+scienceAdd('第2章','アンモニア','アンモニアは水に非常によくとけ、空気より密度が小さい。空気と置き換えるならどの方法で集めるか。','上方置換法','水上置換法では水にとけてしまう。','教科書p96〜98／ワークp37〜38');
+scienceAdd('第2章','アンモニア','アンモニアの噴水実験で、水が勢いよくフラスコに入る主な理由は何か。','アンモニアが水にとけ、フラスコ内の気体が減って気圧が下がるため。','水へのとけやすさを示す実験。','教科書p98／ワークp37');
+scienceAdd('第2章','集め方','水にとけにくい気体を水で押し出すように集める方法を何というか。','水上置換法','水にとけにくい酸素や水素などに使う。','教科書p97／ワークp38');
+scienceAdd('第2章','集め方','水にとけやすく、空気より軽い気体を集める方法を何というか。','上方置換法','アンモニアなどに使う。','教科書p97／ワークp38');
+scienceAdd('第2章','集め方','水にとけやすく、空気より重い気体を集める方法を何というか。','下方置換法','水が使えないので、空気との密度差で集める。','教科書p97／ワークp38');
+scienceAdd('第2章','空気','空気の体積の約8割をしめる気体は何か。','窒素','酸素は約2割。','教科書p95／ワークp38');
+scienceAdd('第3章','水にとける','水に砂糖をとかした後、目に見えない砂糖は消えてなくなったといえるか。','いえない。水の中に小さな粒として広がっている。','とかす前後で全体の質量は変わらない。','教科書p102〜105／ワークp39〜40');
+scienceAdd('第3章','水にとける','透明になった砂糖水の上と下で、こさに違いはあるか。','どの部分も同じこさ。','水にとけた物質は全体に均一に広がる。','教科書p104〜105／ワークp40');
+scienceAdd('第3章','ろ過','砂を水に混ぜた。砂を水から分ける方法を何というか。','ろ過','水にとけない粒を、ろ紙でこし分ける。','教科書p103〜104／ワークp39');
+scienceAdd('第3章','ろ過','砂糖水をろ過しても砂糖がろ紙に残らないのはなぜか。','とけた砂糖の粒はろ紙の穴を通り抜けるから。','ろ過で分けられるのは、とけずに残った大きな粒。','教科書p103〜104／ワークp39');
+scienceAdd('第3章','水溶液','水溶液とは、どのような液か。','物質が水にとけている液。','透明な色つきの水溶液もある。','教科書p105〜106／ワークp40');
+scienceAdd('第3章','濃度計算','食塩8gを水72gにとかした。質量パーセント濃度は何％か。','10％','8÷(8＋72)×100＝10。','教科書p106〜107／ワークp40〜41');
+scienceAdd('第3章','濃度計算','200gの5％食塩水に入っている食塩は何gか。','10g','200×0.05＝10。','教科書p107／ワークp41');
+scienceAdd('第3章','濃度計算','水90gに食塩10gをとかす。濃度は何％か。','10％','食塩水全体は100g。10÷100×100。','教科書p106〜107／ワークp41');
+scienceAdd('第3章','純物質と混合物','酸素・空気・砂糖水のうち、純粋な物質はどれか。','酸素','空気と砂糖水は、いくつかの物質が混ざっている。','教科書p107／ワークp40');
+scienceAdd('ワーク指定の補強','溶解度','同じ温度で、水100gにとける物質の限度量を何というか。','溶解度','温度や物質によって変わる。','ワークp46');
+scienceAdd('ワーク指定の補強','飽和水溶液','その温度で、それ以上溶質がとけない水溶液を何というか。','飽和水溶液','温度が変わると、とける限度も変わる場合がある。','ワークp46');
+scienceAdd('ワーク指定の補強','再結晶','熱い水で多くとかした物質が、冷やすと固体の粒になって出てきた。この操作を利用して物質を取り出す方法を何というか。','再結晶','温度によるとける量の違いを利用する。','ワークp46');
+// 第3ラウンド：実戦60問。数値を変えた計算と、結果から理由を説明する問題を組み合わせる。
+const scienceNumber = value => String(Number(value.toFixed(2)));
+[[54,20],[47.4,6],[78.7,10],[27,10],[89.6,10],[105,10],[44.8,5],[71.3,10]].forEach(([mass,volume])=>
+  scienceAdd('実戦：密度と測定','密度',`質量${mass}g、体積${volume}cm³の物質の密度を求めなさい。`,`${scienceNumber(mass/volume)}g/cm³`,`${mass}÷${volume}。密度は質量を体積で割る。`,'教科書p80〜83／ワークp29〜32'));
+[[2.7,12],[7.87,10],[8.96,5],[10.5,8]].forEach(([density,volume])=>
+  scienceAdd('実戦：密度と測定','質量',`密度${density}g/cm³、体積${volume}cm³の物体の質量を求めなさい。`,`${scienceNumber(density*volume)}g`,`${density}×${volume}。質量＝密度×体積。`,'ワークp29〜32'));
+[[135,2.7],[78.7,7.87],[89.6,8.96]].forEach(([mass,density])=>
+  scienceAdd('実戦：密度と測定','体積',`質量${mass}g、密度${density}g/cm³の物体の体積を求めなさい。`,`${scienceNumber(mass/density)}cm³`,`${mass}÷${density}。体積＝質量÷密度。`,'ワークp29〜32'));
+[[5,95],[12,68],[18,72],[7,93],[25,75],[30,170]].forEach(([solute,water])=>
+  scienceAdd('実戦：濃度と水溶液','濃度',`溶質${solute}gを水${water}gにとかした。質量パーセント濃度は何％か。`,`${scienceNumber(solute/(solute+water)*100)}％`,`${solute}÷(${solute}＋${water})×100。分母は水溶液全体の質量。`,'教科書p106〜107／ワークp40〜41'));
+[[300,10],[250,8]].forEach(([solution,percent])=>
+  scienceAdd('実戦：濃度と水溶液','溶質の質量',`${solution}gの${percent}％食塩水には、食塩が何g入っているか。`,`${scienceNumber(solution*percent/100)}g`,`${solution}×${percent}÷100。`,'教科書p107／ワークp41'));
+[[200,5],[180,20]].forEach(([solution,percent])=>
+  scienceAdd('実戦：濃度と水溶液','水の質量',`${solution}gの${percent}％砂糖水を作る。必要な水は何gか。`,`${scienceNumber(solution*(100-percent)/100)}g`,`砂糖の質量を${solution}×${percent}÷100で求め、全体から引く。`,'ワークp41'));
+scienceAdd('実戦：考察と分類','実験条件','密度を比べたい2つの物体について、一方だけ温めて体積を測った。比較方法として問題になるのはなぜか。','温度という条件がそろっていないから。','密度は温度によって変わることがある。','教科書サイト「学習前」');
+scienceAdd('実戦：考察と分類','測定','容器に粉末を入れて質量をはかる。粉末だけの質量を直接表示させるには、粉末を入れる前に何をするか。','容器をのせた状態で表示を0にする。','容器の質量を差し引く操作。','教科書p82／ワークp29');
+scienceAdd('実戦：考察と分類','性質','同じ物質からできた大小2つの金属片で、変わる量と変わらない性質を1つずつ答えなさい。','変わる量＝質量（または体積）、変わらない性質＝密度。','密度は物質固有の性質。','教科書p80〜83');
+scienceAdd('実戦：考察と分類','測定計画','物体の密度を求めるために必要な測定値を2つ答えなさい。','質量と体積','電子てんびんとメスシリンダーなどで調べる。','教科書p81〜82');
+scienceAdd('実戦：考察と分類','金属の性質','アルミニウムは薄いはくにできる。この性質を何というか。','展性（たたくと広がる性質）','金属はたたくと薄く広がる。','ワークp34〜35');
+scienceAdd('実戦：考察と分類','金属の性質','鉄の棒と木の棒を同じ時間だけ温めた。反対側まで熱が伝わりやすいのはどちらか。','鉄の棒','金属は熱を伝えやすい。','ワークp34〜35');
+scienceAdd('実戦：白い粉末','結果の読み取り','白い粉Aは水にとけず白くにごり、加熱するとこげた。Aとして最も考えやすいものは何か。','デンプン','デンプンは水にとけにくく、加熱するとこげる。','教科書p84〜88／ワークp33');
+scienceAdd('実戦：白い粉末','結果の読み取り','白い粉Bは水にとけ、加熱しても変化しなかった。Bとして考えやすいものは何か。','食塩','白砂糖やグラニュー糖は加熱すると変化する。','教科書p84〜88／ワークp33');
+scienceAdd('実戦：白い粉末','実験の組み合わせ','2種類の白い粉がどちらも水にとけた。次に、区別に使える観察を1つ挙げなさい。','粒の形や大きさを比べる（または加熱したときの変化を見る）。','1つの性質が同じなら、別の性質で比べる。','教科書p84〜88');
+scienceAdd('実戦：白い粉末','安全','白い粉を加熱する前に、正体が不明なのに食べ物だと決めつけてよいか。','よくない。','見た目が同じでも別の物質の可能性があり、味見は危険。','教科書p85');
+scienceAdd('実戦：白い粉末','加熱','グラニュー糖を弱火で加熱すると、とけてこげた。この結果だけで食塩だと判断できるか。','できない。','食塩は加熱してもこげにくい。','教科書p88／ワークp33');
+scienceAdd('実戦：白い粉末','水へのとけ方','粉を混ぜた液が白くにごり、しばらくすると底に沈んだ。水にとけたといえるか。','いえない。','とけた物質は全体に均一に広がり、沈まない。','教科書p88、p102〜105');
+scienceAdd('実戦：白い粉末','有機物','砂糖と食塩を燃やした。石灰水を白くにごらせる気体が出ると考えやすいのはどちらか。','砂糖','砂糖は炭素をふくむ有機物。','教科書p89／ワークp35');
+scienceAdd('実戦：白い粉末','分類','二酸化炭素には炭素が入っている。それでも有機物に分類しないのはなぜか。','二酸化炭素は炭素をふくむが、有機物には含めない例外だから。','「炭素がある＝必ず有機物」ではない。','教科書p89');
+scienceAdd('実戦：気体','集め始め','気体を発生させた直後の最初の試験管には、目的の気体以外に何が多く混ざるか。','装置や管の中にあった空気','最初の1本を使わず、その後の気体を調べる。','教科書p93／ワークp36');
+scienceAdd('実戦：気体','二酸化炭素','同じ体積の空気と二酸化炭素を比べると、二酸化炭素の方が重い。水を使わず集める方法を答えなさい。','下方置換法','密度の大きな気体は下にたまる。','教科書p95〜97／ワークp38');
+scienceAdd('実戦：気体','酸素','酸素を水上置換法で集められる主な理由を答えなさい。','水にとけにくいから。','密度だけでなく、水へのとけやすさを先に考える。','教科書p94〜97');
+scienceAdd('実戦：気体','水素','水素を集めるときに火気に注意する理由は何か。','水素は火をつけると燃えるから。','実験は教員の指示と安全手順に従う。','教科書p95');
+scienceAdd('実戦：気体','アンモニア','アンモニアを水上置換法で集めると、うまく集まらない理由を答えなさい。','水に非常によくとけるから。','水にとけやすい気体には空気との置換を使う。','教科書p96〜98');
+scienceAdd('実戦：気体','判別','気体Aは石灰水を白くにごらせた。気体Bは火のついた線香を激しく燃やした。AとBをそれぞれ答えなさい。','A＝二酸化炭素、B＝酸素','反応する試薬と燃え方で区別する。','教科書p93〜95／ワークp36');
+scienceAdd('実戦：気体','判別','気体Cは水でぬらした赤色リトマス紙を青くし、水に非常によくとける。Cは何か。','アンモニア','アルカリ性と水へのとけやすさが手がかり。','教科書p96〜98／ワークp37');
+scienceAdd('実戦：気体','燃焼','酸素と水素を調べた。火をつけると水素が燃える。酸素自身は燃えるか。','酸素自身は燃えない。','酸素には、ほかの物質を燃やすはたらきがある。','教科書p94〜95');
+scienceAdd('実戦：気体','空気','空気の中で、窒素と酸素を合わせると体積の約何％になるか。','約99％','窒素約78％＋酸素約21％。','教科書p95');
+scienceAdd('実戦：気体','複数の性質','ある気体は水にとけにくく、空気より軽い。水上置換法と上方置換法のうち、一般に水上置換法を選ぶ利点は何か。','空気が混ざりにくく、比較的純粋な気体を集めやすい。','水へのとけやすさが低いなら、水上置換法が使える。','教科書p97');
+scienceAdd('実戦：水溶液','質量','水120gに砂糖30gを完全にとかした。砂糖水全体の質量は何gか。','150g','とかしても砂糖は消えず、全体の質量は足し算で求める。','教科書p102〜105／ワークp39');
+scienceAdd('実戦：水溶液','ろ過','泥水をろ過した後、ろ紙の上に残るのは何か。','水にとけない泥の粒','水と、ろ紙を通れる小さな粒は下へ流れる。','教科書p104');
+scienceAdd('実戦：水溶液','ろ過','ろ過するとき、液をガラス棒に伝わせて注ぐ理由を答えなさい。','液が飛び散らないように、静かにろ紙へ流すため。','ろ紙を傷つけず、液をあふれさせない。','教科書p104／ワークp39');
+scienceAdd('実戦：水溶液','均一','完全にとけた食塩水を上と下から同じ量ずつ取った。こさはどうなるか。','同じになる。','とけた食塩は液全体に均一に広がる。','教科書p105／ワークp40');
+scienceAdd('実戦：水溶液','透明','茶色い液でも、水溶液なら透明な場合がある。「透明」とは何を意味するか。','向こう側が透けて見えること。','透明は無色という意味ではない。','教科書p105〜106');
+scienceAdd('実戦：水溶液','濃さ','2つの同じ量の食塩水を比べる。溶けている食塩が多い方は、濃いか薄いか。','濃い。','同じ全体量なら溶質が多い方が濃度は高い。','教科書p106');
+scienceAdd('実戦：水溶液','薄める','100gの20％食塩水に水100gを加えた。新しい濃度は何％か。','10％','食塩20gは変わらず、全体が200gになる。20÷200×100。','教科書p106〜107／ワークp41');
+scienceAdd('実戦：まとめ','純物質','酸素と食塩水のうち、1種類の物質だけからできているのはどちらか。','酸素','食塩水は食塩と水が混ざっている。','教科書p107');
+scienceAdd('実戦：まとめ','混合物','炭酸飲料が混合物である理由を説明しなさい。','水や二酸化炭素など、複数の物質が混ざっているから。','純物質は1種類だけでできている。','教科書p107／ワークp40');
+scienceAdd('実戦：まとめ','飽和','ある温度の水溶液に同じ物質を加えても、それ以上とけなかった。水溶液の状態を何というか。','飽和している。','その温度でとける限度に達している。','ワークp46');
+scienceAdd('実戦：まとめ','結晶','溶液を冷やしたら、溶けていた物質が固体の粒になった。この粒を何というか。','結晶','温度を下げると、とける量が減る物質がある。','ワークp46');
+scienceAdd('実戦：まとめ','蒸発','砂糖水から水を蒸発させると、砂糖はどうなるか。','溶けていた砂糖が残る。','水だけがなくなり、溶質は消えない。','教科書p103〜105／ワークp46');
+const scienceSeen = new Set();
+function scienceEscape(value){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function renderScienceBank(){
+  const first=document.getElementById('science-round1'), second=document.getElementById('science-round2'), third=document.getElementById('science-round3');
+  if(!first||!second||!third||first.dataset.ready)return;
+  const render=(items,offset)=>{let last='';return items.map((q,n)=>{const i=n+offset;const heading=q.part!==last?(last=q.part,`<div class="science-unit">${scienceEscape(q.part)}</div>`):'';
+    return `${heading}<div class="q" id="science-q-${i}"><div class="q-header"><span class="q-num">Q${i+1}</span><span class="badge ${i<15?'b-easy':q.part==='ワーク指定の補強'?'b-hard':'b-med'}">${scienceEscape(q.unit)}</span></div><div class="q-text">${scienceEscape(q.question)}</div><input class="ans-input" aria-label="Q${i+1}の解答" placeholder="紙に書くか、ここに答えを書こう"><div class="actions"><button class="btn" onclick="scienceReveal(${i})">答え・解説を見る</button></div><div class="reveal"><b style="color:#b3261e">答え：</b><b style="color:#b3261e">${scienceEscape(q.answer)}</b><br><b>理由：</b>${scienceEscape(q.why)}<div class="science-source">対応範囲：${scienceEscape(q.source)}</div></div></div>`;}).join('');};
+  first.innerHTML='<h2>第1ラウンド：基本15問</h2>'+render(SCIENCE_QUESTIONS.slice(0,15),0);
+  second.innerHTML='<h2>第2ラウンド：章別45問</h2>'+render(SCIENCE_QUESTIONS.slice(15,60),15);
+  third.innerHTML='<h2>第3ラウンド：実戦60問</h2><p>計算や実験結果の説明までできるか、紙に書いて確認しよう。</p>'+render(SCIENCE_QUESTIONS.slice(60),60);
+  first.dataset.ready='1';
+}
+function scienceUpdateProgress(){
+  const count=scienceSeen.size, progress=document.getElementById('science-progress'), second=document.getElementById('science-round2'), third=document.getElementById('science-round3');
+  if(progress)progress.textContent=`第1ラウンド：${count}／15問の答えを確認${count===15?' ／ 章別45問・実戦60問が開きました！':''}`;
+  if(second&&third&&count===15&&second.hidden){second.hidden=false;third.hidden=false;second.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+function scienceReveal(index){
+  const card=document.getElementById('science-q-'+index);if(!card)return;
+  const answer=card.querySelector('.reveal');answer.classList.toggle('show');
+  if(index<15&&answer.classList.contains('show')){scienceSeen.add(index);scienceUpdateProgress();}
+}
+function scienceToggleAll(){
+  const tab=document.getElementById('tab-science-chukan2'),button=document.getElementById('science-all');
+  const visible=Array.from(tab.querySelectorAll('.q .reveal')).filter(el=>!el.closest('[hidden]'));
+  const show=!visible.every(el=>el.classList.contains('show'));
+  if(show){for(let i=0;i<15;i++)scienceSeen.add(i);scienceUpdateProgress();}
+  tab.querySelectorAll('.q .reveal').forEach(el=>el.classList.toggle('show',show));
+  button.textContent=show?'表示中の答えをすべて隠す':'表示中の答えをすべて見る';
+}
 document.addEventListener('DOMContentLoaded', () => {
   renderDailyProblems();
   renderMidtermBank();
+  renderScienceBank();
+  const requestedTab = decodeURIComponent(location.hash.slice(1));
+  if (requestedTab && document.getElementById('tab-' + requestedTab)) showTab(requestedTab);
   (function(){
     const el = document.getElementById('cd-days');
     if (!el) return;
